@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJET_MOLOTOFF</title>
+    <style>
+        #container{
+          display: grid;
+          grid-template-columns:1fr 1fr;
+            grid-template-areas: 
+                "cssButtons cssButtons"
+                "cssButtons cssButtons";
+                height: 80%;
+                width: auto;
+        }
+        #result0{ 
+          width:90%;
+          height:100px;
+          border:5px solid rgb(10, 49, 149) ;
+          border-radius: 4px;
+        }
+        #result1{ 
+          width:90%;
+          height:100px;
+          border:5px solid rgb(29, 110, 53) ;
+          border-radius: 4px;
+        }
+        #result2{ 
+          width:90%;
+          height:100px;
+          border:5px solid rgb(141, 9, 9) ;
+          border-radius: 4px;
+        }
+        #result3{ 
+          width:90%;
+          height:100px;
+          border:5px solid rgb(163, 145, 38) ;
+          border-radius: 4px;
+        }
+        body {
+  background-color: lightblue;
+}
+      #vysledek{
+        text-align: center;
+        padding-left: 100px;
+      }
+        
+    </style>
+</head>
+<body>
+
+
+<input id="radioSpanish" type="radio" name="languagePicker">
+<label> spanish mode</label>
+<br>
+<input id="radioEnglish" type="radio" name="languagePicker">
+<label> english mode</label>
+<br>
+<input id= "odeslat" type="submit" value="submit">
+<br>
+<label id= "question"></label>
+<br>
+<span id="obrazekVole"></span>
+<div id="container">
+<div class="cssButtons">
+<button type="button" id="result0" ></button>
+</div>
+<div class="cssButtons">
+
+<button type="button" id="result1" ></button>
+</div>
+<div class="cssButtons">
+
+<button type="button" id="result2" ></button>
+</div>
+<div class="cssButtons">
+
+<button type="button" id="result3" ></button>
+</div></div>
+
+
+
+</div>
+<br>
+<label id="vysledek"> </label>
+
+    <script>
+      
+document.getElementById("odeslat").onclick=function(){
+ var fullText =stůl-mesa/ skříň-ammario/ židle-silla/ botník-zapatero/ krabice-caja/ sprcha-ducha/ vana-baňera/ kolébka-cuna/ pračka-lavandora/ lednice-nevera/ trouba-horno/ postel-cama/ noční stolek-mesilla de noche/ zrcadlo-espejo/ koberec-alfombra/ okno-ventana/ obraz-cuadro/ zeď-pared/ konferenční stolek-mesa de centro/ podlaha-suelo/ časopis-nevista/ květina nebo podlaží-planta/ počítač-ordenador/ svíčky-velas/ polštář-cojín/ lampa-lámpara/ křeslo- sillón/ toaleta-wáter/ polička-estanteriá/ pohovka-sofá/ televize-televisión/ váza-jarrón/;
+ fullText.replace(/ *\([^)]*\) */g, "");
+ var seperated=fullText.split(/[\/-]/);
+ 
+ if ( fullText==""){
+  alert("enter words");
+ }
+ else{
+  
+
+  function shuffle(array1){
+      let currentIndex = array1.length;
+
+while(currentIndex != 0){
+  let randomIndex = Math.floor(Math.random() * currentIndex);
+  currentIndex-=1;
+
+  let temp = array1[currentIndex];
+  array1[currentIndex] = array1[randomIndex];
+  array1[randomIndex] = temp;
+}
+
+}
+function second(kus, array, nth){
+    let sus=[];
+    for (let i = kus; i < array.length; i += nth)
+    {
+        if (i < array.length) {
+            sus.push(array[i]);
+        }
+    };
+    return sus;
+}
+
+  
+
+  let spanish= second(0,seperated,2);
+  let english=second(1,seperated,2)
+  console.log (spanish);
+
+
+function Alternative(x,y,z){
+  shuffle(x)
+
+  let bus= x[0];
+  const index = seperated.indexOf(bus);
+  finalWord= seperated[index+z]
+  
+  document.getElementById("question").innerHTML=x[0];
+  
+  shuffle(y);
+  final = [y[0] ,y[1],y[2], finalWord];
+  shuffle(final);
+  return final;
+  
+}
+  function assign(n, m) {
+  
+  var element = document.getElementById(n);
+  if (element) {
+    element.innerHTML = final[m];
+    
+  }
+ 
+}
+  
+
+
+
+/*  let choose0= document.getElementById("result0")
+  let choose1=document.getElementById("result1")
+  let choose2=document.getElementById("result2")
+  let choose3=document.getElementById("result3")
+*/
+    
+  
+   
+    
+
+  
+
+
+  
+  
+
+  
+  
+
+
+  if(document.getElementById("radioSpanish").checked=== true ){
+    Alternative(spanish, english,+1);
+    assign("result0", 0);
+assign("result1", 1);
+assign("result2", 2);
+assign("result3", 3);
+    WINLANDIA("result0", 0,spanish, english,+1,"result0", 0);
+WINLANDIA("result1", 1,spanish, english,+1,"result0", 1);
+WINLANDIA("result2", 2,spanish, english,+1,"result0", 2);
+WINLANDIA("result3", 3,spanish, english,+1,"result0", 3);
+    
+
+}
+
+else if(document.getElementById("radioEnglish").checked=== true )
+{
+    
+  Alternative(english, spanish,-1);
+  assign("result0", 0);
+assign("result1", 1);
+assign("result2", 2);
+assign("result3", 3);
+    WINLANDIA("result0", 0, english, spanish,-1,);
+WINLANDIA("result1", 1, english, spanish,-1,);
+WINLANDIA("result2", 2, english, spanish,-1);
+WINLANDIA("result3", 3, english, spanish,-1, );
+}
+else{
+  alert("select mode")
+}
+function WINLANDIA(o, p, x,y,z) {
+  document.getElementById(o).onclick = function () {
+    
+    if (final[p] == finalWord) 
+    {
+      document.getElementById("vysledek").innerHTML="nice job";
+      document.body.style.backgroundColor="#2df758";
+      setTimeout(() => {
+        Alternative(x,y,z);
+      assign("result0", 0);
+assign("result1", 1);
+assign("result2", 2);
+assign("result3", 3);
+document.body.style.backgroundColor="lightblue";
+}, 600);
+      
+    } else {
+      document.getElementById("vysledek").innerHTML="wrong";
+    }
+  };
+}
+  
+  
+}
+
+
+
+ }
+  
+
+
+
+
+
+       </script>
+</body>
+</html>
